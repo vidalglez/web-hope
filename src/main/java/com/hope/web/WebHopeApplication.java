@@ -1,4 +1,4 @@
-package com.hope.web.config;
+package com.hope.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
