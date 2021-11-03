@@ -10,7 +10,11 @@ import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailException;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -24,6 +28,13 @@ public class MailServiceImpl implements MailService {
 
     @Value("#{systemEnvironment['SENDGRID_API_KEY']}")
     String apiKey;
+
+    MailSender mailSender;
+
+    @Autowired
+    public MailServiceImpl(MailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public void sendEmail(String toAddress, String subject, String message) throws IOException{
         Email fromEmailAddress = new Email(fromAddress);
@@ -48,6 +59,15 @@ public class MailServiceImpl implements MailService {
             log.error(String.format("Error while trying to send email, message: %s", ex.getMessage()));
             throw ex;
         }
+    }
+
+    public void sendOwnerEmail(String toAddress, String subject, String message) throws MailException {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setSubject(subject);
+        mailMessage.setTo(toAddress, fromAddress);
+        mailMessage.setText(message);
+
+        mailSender.send(mailMessage);
     }
 }
 
