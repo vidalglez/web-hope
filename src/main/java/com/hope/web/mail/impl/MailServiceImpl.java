@@ -12,11 +12,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 
 @Slf4j
@@ -24,16 +28,19 @@ import java.io.IOException;
 public class MailServiceImpl implements MailService {
 
     @Value("#{systemEnvironment['FROM_EMAIL']}")
-    String fromAddress;
+    private String fromAddress;
 
     @Value("#{systemEnvironment['SENDGRID_API_KEY']}")
-    String apiKey;
+    private String apiKey;
 
-    MailSender mailSender;
+    private JavaMailSender mailSender;
+
+    private SpringTemplateEngine thymeleaf;
 
     @Autowired
-    public MailServiceImpl(MailSender mailSender) {
+    public MailServiceImpl(JavaMailSender mailSender, SpringTemplateEngine thymeleaf) {
         this.mailSender = mailSender;
+        this.thymeleaf = thymeleaf;
     }
 
     public void sendEmail(String toAddress, String subject, String message) throws IOException{
@@ -61,13 +68,26 @@ public class MailServiceImpl implements MailService {
         }
     }
 
-    public void sendOwnerEmail(String toAddress, String subject, String message) throws MailException {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setSubject(subject);
-        mailMessage.setTo(toAddress, fromAddress);
-        mailMessage.setText(message);
+    public void sendOwnerEmail(String toAddress, String subject, String message) throws MessagingException {
 
-        mailSender.send(mailMessage);
+        Context ctx = new Context();
+        ctx.setVariable("subject", subject);
+        ctx.setVariable("message", message);
+        ctx.setVariable("villaimg", "villaimg");
+
+        String emailContent = thymeleaf.process("mail.html", ctx);
+
+        MimeMessage mimeMessage =  mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+        mimeMessageHelper.setFrom(fromAddress);
+        mimeMessageHelper.setTo(toAddress);
+        mimeMessageHelper.setCc(fromAddress);
+        mimeMessageHelper.setSubject(subject);
+        mimeMessageHelper.setText(emailContent, true);
+
+        mimeMessageHelper.addInline("villaimg", new ClassPathResource("static/img/img.png"), "image/png");
+
+        mailSender.send(mimeMessage);
     }
 }
 

@@ -4,8 +4,9 @@ import com.hope.web.config.MailConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import java.util.Properties;
 
@@ -17,7 +18,7 @@ public class WebHopeApplication {
 	}
 
 	@Bean
-	public MailSender mailSender(MailConfig mailConfig) {
+	public JavaMailSenderImpl mailSender(MailConfig mailConfig) {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost(mailConfig.getHost());
 		mailSender.setPort(Integer.parseInt(mailConfig.getPort()));
@@ -34,4 +35,12 @@ public class WebHopeApplication {
 		return mailSender;
 	}
 
+	@Bean
+	public ClassLoaderTemplateResolver emailTemplateResolver() {
+		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setPrefix("templates/");
+		templateResolver.setTemplateMode("HTML");
+		templateResolver.setCharacterEncoding("UTF-8");
+		return templateResolver;
+	}
 }

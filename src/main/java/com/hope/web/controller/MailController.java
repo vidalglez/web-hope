@@ -6,9 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 @Slf4j
@@ -41,7 +41,7 @@ public class MailController {
         try {
             mailService.sendOwnerEmail(emailData.getToEmail(), emailData.getSubject(), emailData.getMessage());
             log.info("Mail has been sent successfully!!!");
-        } catch(MailException ex) {
+        } catch(MessagingException ex) {
             log.info(String.format("There was an issue sending email: %s", ex.getMessage()));
             return ResponseEntity.internalServerError().build();
         }

@@ -3,13 +3,16 @@ package com.hope.web;
 import com.hope.web.config.MailConfig;
 import com.hope.web.controller.InitialController;
 import com.hope.web.controller.MailController;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+
+import javax.annotation.PostConstruct;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,18 +22,29 @@ class WebHopeApplicationTests {
 	@Autowired
 	private InitialController initialController;
 
-	@MockBean
+	@Autowired
 	private MailConfig mailConfig;
 
 	@MockBean
-	private MailSender mailSender;
+	private JavaMailSender mailSender;
+
+	@MockBean
+	SpringTemplateEngine thymeleaf;
 
 	@Autowired
 	private MailController mailController;
 
-	@BeforeEach
-	public void setup() {
-		Mockito.when(mailConfig.getPort()).thenReturn("0");
+	@TestConfiguration
+	public static class EarlyConfig {
+
+		@MockBean
+		private MailConfig mailConfig;
+
+		@PostConstruct
+		public void initMock() {
+			Mockito.when(mailConfig.getPort()).thenReturn("4567");
+			Mockito.when(mailConfig.getPort()).thenReturn("4567");
+		}
 	}
 
 	@Test
