@@ -33,6 +33,9 @@ public class MailServiceImpl implements MailService {
     @Value("#{systemEnvironment['SENDGRID_API_KEY']}")
     private String apiKey;
 
+    @Value("${web-site-link}")
+    private String webSiteLink;
+
     private JavaMailSender mailSender;
 
     private SpringTemplateEngine thymeleaf;
@@ -74,6 +77,7 @@ public class MailServiceImpl implements MailService {
         ctx.setVariable("subject", subject);
         ctx.setVariable("message", message);
         ctx.setVariable("villaimg", "villaimg");
+        ctx.setVariable("webSiteLink", webSiteLink);
 
         String emailContent = thymeleaf.process("mail.html", ctx);
 

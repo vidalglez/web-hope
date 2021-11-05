@@ -4,8 +4,12 @@ import com.hope.web.config.MailConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import java.util.Properties;
@@ -36,11 +40,29 @@ public class WebHopeApplication {
 	}
 
 	@Bean
-	public ClassLoaderTemplateResolver emailTemplateResolver() {
+	@Primary
+	public ITemplateResolver emailTemplateResolver() {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 		templateResolver.setPrefix("templates/");
+		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML");
 		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
+	}
+
+	@Bean
+	public ResourceBundleMessageSource emailMessageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("mailMessages");
+		return messageSource;
+	}
+
+	@Bean
+	//public SpringTemplateEngine thymeleafTemplateEngine(ITemplateResolver templateResolver) {
+	public SpringTemplateEngine thymeleaf(ITemplateResolver templateResolver) {
+		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		templateEngine.setTemplateResolver(templateResolver);
+		templateEngine.setTemplateEngineMessageSource(emailMessageSource());
+		return templateEngine;
 	}
 }

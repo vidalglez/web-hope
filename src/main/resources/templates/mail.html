@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Villa Mia</title>
     <link href="../static/styles/mail.css" rel="stylesheet" th:href="@{styles/mail.css}" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;600;900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
         * {
     margin: 0;
@@ -43,7 +52,7 @@ body {
     content: "";
     grid-column: 4 / -1;
     grid-row: 1/ -1;
-    background-image: url([[@{img/img.png}]]);
+    background-image: url(cid:villaimg);
     background-size: cover;
     background-position: right top;
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -129,7 +138,7 @@ a:hover {
         content: "";
         grid-column: 1 / -1;
         grid-row: 4/ 1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -190,7 +199,7 @@ a:hover {
         content: "";
         grid-column: 1 / -1;
         grid-row: 4/ 1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -243,7 +252,7 @@ a:hover {
         content: "";
         grid-column: 1 / -1;
         grid-row: 4/ 1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -305,7 +314,7 @@ a:hover {
         content: "";
         grid-column: 1 / -1;
         grid-row: 4/ 1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -358,7 +367,7 @@ a:hover {
         content: "";
         grid-column: 1 / -1;
         grid-row: 4/ 1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -420,7 +429,7 @@ a:hover {
         content: "";
         grid-column: 4 / -1;
         grid-row: 1/ -1;
-        background-image: url([[@{img/img.png}]]);
+        background-image: url(cid:villaimg);
         background-size: cover;
         background-position: right top;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
@@ -482,9 +491,10 @@ a:hover {
         <p th:text="${message}">This should be the message</p>
         <h2 class="first">Villa M&iacute;a</h2>
         <h3 class="text_transform">Sal&oacute;n y Banquetes</h3>
+        <!--<img src="cid:villaimg">-->
     </div>
 
-    <a href="home.html">Visitar</a>
+    <a href="webSiteLink" th:href="@{${webSiteLink}}">Visitar</a>
 </section>
 
 </body>
