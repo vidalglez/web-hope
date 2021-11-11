@@ -1,501 +1,132 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Villa Mia</title>
-    <link href="../static/styles/mail.css" rel="stylesheet" th:href="@{styles/mail.css}" type="text/css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-mail_Template</title>
 
-    <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;600;900&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #F7C9C9;
-    display: flex;
-    height: 100vh;
-}
-
-.first {
-    font-weight: 900;
-}
-
-.text_transform {
-    font-weight: 100;
-}
-
-.grid {
-    background-color: white;
-    height: 90vh;
-    width: 90%;
-    max-width: 1500px;
-    margin: auto;
-    box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    overflow: hidden;
-}
-
-.grid::before {
-    content: "";
-    grid-column: 4 / -1;
-    grid-row: 1/ -1;
-    background-image: url(cid:villaimg);
-    background-size: cover;
-    background-position: right top;
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-}
-
-h2 {
-    font-size: 9.5rem;
-    color: rgb(78, 76, 76);
-}
-
-.grid_text {
-    grid-column: 2/8;
-    grid-row: 3/ -2;
-    z-index: 1;
-    flex-direction: column;
-    justify-content: center;
-    /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-    animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-    transform: translate(50%);
-    animation: move 2s forwards;
-}
-
-.text_transform {
-    font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-a {
-    grid-column: 2;
-    grid-row: 6;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    padding: 10px;
-    background-color: indianred;
-    color: white;
-    font-size: 1.5rem;
-}
-
-a:hover {
-    color: indianred;
-    background-color: white;
-}
-
-@keyframes show {
-    to {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-}
-
-@keyframes move {
-    to {
-        transform: translate(0);
-    }
-}
-
-
-
-/* MEDIA QUERY ----------------------------------------------------------- */
-
-
-
-@media only screen and (max-device-width: 480px) {
-    .first {
-        font-weight: 900;
-    }
-    .text_transform {
-        font-size: 1.3rem;
-    }
-    .grid {
-        height: 90vh;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(196, 194, 194, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-    .grid::before {
-        content: "";
-        grid-column: 1 / -1;
-        grid-row: 4/ 1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-    h2 {
-        font-size: 3.5rem;
-        color: rgb(78, 76, 76);
-        text-shadow: rgb(255, 255, 255);
-    }
-    .grid_text {
-        grid-column: 2/6;
-        grid-row: 4/ -1;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-        animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-
-    .text_transform {
-        font-weight: 200;
-    }
-
-
-    a {
-        font-size: 1.3rem;
-        grid-row: -1;
-    }
-}
-
-
-
-
-/* ---------------------------------------------------------------------- */
-
-@media only screen and (min-device-width: 481px) and (max-device-width: 765px) {
-    .first {
-        font-weight: 900;
-    }
-    .text_transform {
-        font-size: 1.5rem;
-    }
-    .grid {
-        height: 90vh;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-    .grid::before {
-        content: "";
-        grid-column: 1 / -1;
-        grid-row: 4/ 1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-    h2 {
-        font-size: 5rem;
-        color: rgb(78, 76, 76);
-    }
-    .grid_text {
-        grid-column: 2/8;
-        grid-row: 3/ -2;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-        animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-
-    .text_transform {
-        font-weight: 200;
-    }
-}
-
-
-
-
-/* For tablets: SURFACE DUO  ----------------------------------*/
-
-@media only screen and (min-width: 500px) {
-
-
-    .text_transform {
-        font-size: 1.5rem;
-    }
-    .grid {
-        height: 90vh;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-    .grid::before {
-        content: "";
-        grid-column: 1 / -1;
-        grid-row: 4/ 1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-    h2 {
-        font-size: 4.5rem;
-        color: rgb(78, 76, 76);
-    }
-
-    .grid_text {
-        grid-column: 2/8;
-        grid-row: 4/ -2;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-        animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-    a {
-        grid-column: 2;
-        grid-row: -2;
-        display: flex;
-        /* justify-content: center;
-        text-decoration: none;
-        padding: 10px;
-        background-color: indianred; */
-        color: white;
-        font-size: 1.2rem;
-    }
-}
-
-
-
-
-/* ----------------------------------------------------------------------- */
-
-@media screen and (min-width: 766px) {
-    .first {
-        font-weight: 900;
-    }
-    .text_transform {
-        font-size: 2rem;
-    }
-    .grid {
-        height: 90vh;
-        width: 90%;
-        max-width: 800px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-    .grid::before {
-        content: "";
-        grid-column: 1 / -1;
-        grid-row: 4/ 1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-
-    h2 {
-        font-size: 6rem;
-        color: rgb(78, 76, 76);
-    }
-    .grid_text {
-        grid-column: 2/8;
-        grid-row: 4/ -2;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-        animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-    a {
-        font-size: 1.6rem;
-        padding: 20px;
-    }
-}
-
-
-
-
-
-/* TABLET IPAD-PRO --------------------------------------------------*/
-
-@media only screen and (min-width:1024px) {
-
-    .grid {
-        background-color: white;
-        height: 90vh;
-        width: 90%;
-        max-width: 1500px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-
-    .grid::before {
-        content: "";
-        grid-column: 1 / -1;
-        grid-row: 4/ 1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-
-    .grid_text {
-        grid-column: 2/8;
-        grid-row: 4/ -2;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        /* clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-     animation: show 2.5s cubic-bezier(1,.01,.73,.72) forwards; */
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-
-
-
-    h2 {
-        font-size: 7.5rem;
-
-    }
-
-    .text_transform {
-        font-size: 2.5rem;
-    }
-
-    a {
-        font-size: 2.3rem;
-        padding: 20px;
-    }
-}
-
-
-/* DESKTOP ------------------------------------------------------*/
-
-@media only screen and (min-width: 1280px) {
-    .first {
-        font-weight: 900;
-    }
-    .text_transform {
-        font-weight: 100;
-    }
-    .grid {
-        background-color: white;
-        height: 90vh;
-        width: 90%;
-        max-width: 1500px;
-        margin: auto;
-        box-shadow: 0 0 30px -10px rgba(138, 135, 135, 0.6);
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        overflow: hidden;
-    }
-    .grid::before {
-        content: "";
-        grid-column: 4 / -1;
-        grid-row: 1/ -1;
-        background-image: url(cid:villaimg);
-        background-size: cover;
-        background-position: right top;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        animation: show 2s cubic-bezier(1, .01, .73, .72) forwards;
-    }
-    h2 {
-        font-size: 9.5rem;
-        color: rgb(78, 76, 76);
-    }
-    .grid_text {
-        grid-column: 2/8;
-        grid-row: 3/ -2;
-        z-index: 1;
-        flex-direction: column;
-        justify-content: center;
-        transform: translate(50%);
-        animation: move 2s forwards;
-    }
-
-    .text_transform {
-        font-size: 2.5rem;
-    }
-
-    a {
-        grid-column: 2;
-        grid-row: 6;
-        display: flex;
-        justify-content: center;
-        text-decoration: none;
-        padding: 10px;
-        background-color: indianred;
-        color: white;
-        font-size: 1.5rem;
-    }
-    a:hover {
-        color: indianred;
-        background-color: white;
-    }
-    @keyframes show {
-        to {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-    }
-    @keyframes move {
-        to {
-            transform: translate(0);
-        }
-    }
-}
 
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #F7C9C9;
+        }
+
+        .contenedor {
+            background-color: white;
+            height: 90vh;
+            width: 95%;
+            max-width: 1500px;
+            margin: auto;
+            box-shadow: 0 0 40px -10px rgba(138, 135, 135, 0.6);
+        }
+
+        .logo {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            padding-top: 1%;
+            padding-left: 2%;
+
+        }
+
+        img {
+            align-items: baseline;
+            width: 25%;
+        }
+
+        .salon h3 {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            padding-left: 2.7%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.5rem;
+            margin-top: -2.6%;
+        }
+
+        .mensaje {
+            display: flex;
+            width: 100%;
+            margin: 5%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .datos_salon {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            margin-top: 10%;
+
+        }
+
+        h5 {
+            font-size: .8rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding-block-end: 3px;
+            color: gray;
+        }
+
+        a {
+            color: gray;
+            font-size: 1rem;
+            padding-top: 9px;
+        }
+
+
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: center;
+            color: gray;
+            font-size: .75rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
     </style>
 </head>
+
+
 <body>
 
-<section class="grid">
-
-    <div class="grid_text">
-        <h3 th:text="${subject}">This should be the subject</h3>
-        <p th:text="${message}">This should be the message</p>
-        <h2 class="first">Villa M&iacute;a</h2>
-        <h3 class="text_transform">Sal&oacute;n y Banquetes</h3>
-        <!--<img src="cid:villaimg">-->
+<div class="contenedor">
+    <div class="logo">
+        <img src="cid:villaimg" alt="logo Villa">
     </div>
 
-    <a href="webSiteLink" th:href="@{${webSiteLink}}">Visitar</a>
-</section>
+    <div class="salon">
+        <h3>Sal&oacute;n y Banquetes</h3>
+    </div>
 
+
+    <div class="mensaje" th:text="${message}">Este es el mensaje</div>
+
+
+    <div class="datos_salon">
+        <div>
+            <h5>Lomas del R&iacute;o 41, Villaseca, 36251 Marfil, Gto.</h5>
+            <h5>Guanajuato, Gto.</h5>
+            <a href="webSiteLink" th:href="@{${webSiteLink}}">www.villamiasalon.com</a>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        &copy; Copyright Villa M&iacute;a 2021
+    </div>
+</div>
 </body>
+
 </html>
