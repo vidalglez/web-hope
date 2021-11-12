@@ -89,7 +89,7 @@ public class MailServiceImpl implements MailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(emailContent, true);
 
-        mimeMessageHelper.addInline("villaimg", new ClassPathResource("static/img/img.png"), "image/png");
+        mimeMessageHelper.addInline("villaimg", new ClassPathResource("static/img/logo_villa3.svg"), "image/svg+xml");
 
         mailSender.send(mimeMessage);
     }

@@ -36,6 +36,7 @@ public class MailController {
     }
 
     @PostMapping(value="/sendfromclient", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public  ResponseEntity<String> sendEmailFromClient(@RequestBody EmailDataDTO emailData) {
         log.info(String.format("Received email data: %s", emailData.toString()));
         try {
@@ -45,7 +46,8 @@ public class MailController {
             log.info(String.format("There was an issue sending email: %s", ex.getMessage()));
             return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.ok().build();
+        
+        return ResponseEntity.accepted().body("{\"result\" : \"Mail has been sent successfully!!!\"}");
     }
 
 
