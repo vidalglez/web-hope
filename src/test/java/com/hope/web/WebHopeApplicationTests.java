@@ -1,7 +1,6 @@
 package com.hope.web;
 
 import com.hope.web.config.MailConfig;
-import com.hope.web.controller.InitialController;
 import com.hope.web.controller.MailController;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,9 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class WebHopeApplicationTests {
-
-	@Autowired
-	private InitialController initialController;
 
 	@Autowired
 	private MailConfig mailConfig;
@@ -49,7 +45,6 @@ class WebHopeApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertThat(initialController).isNotNull();
 		assertThat(mailController).isNotNull();
 	}
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
-import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -24,24 +23,12 @@ public class MailController {
         this.mailService = mailService;
     }
 
-    @PostMapping(value = "/send", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> sendEmail(@RequestBody EmailDataDTO emailData) {
-        log.info(String.format("Received email data: %s", emailData.toString()));
-        try {
-            mailService.sendEmail(emailData.getToEmail(), emailData.getSubject(), emailData.getMessage());
-        } catch (IOException ex) {
-            log.info(String.format("There was an issue sending email: %s", ex.getMessage()));
-            return ResponseEntity.internalServerError().build();
-        }
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping(value="/sendfromclient", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/send", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     public  ResponseEntity<String> sendEmailFromClient(@Valid @RequestBody EmailDataDTO emailData) throws MessagingException {
         log.info(String.format("Received email data: %s", emailData.toString()));
 
-        mailService.sendOwnerEmail(emailData.getToEmail(), emailData.getSubject(), emailData.getMessage());
+        mailService.sendEmail(emailData.getToEmail(), emailData.getSubject(), emailData.getMessage());
         log.info("Mail has been sent successfully!!!");
         
         return ResponseEntity.accepted().body("{\"result\" : \"Mail has been sent successfully!!!\"}");
