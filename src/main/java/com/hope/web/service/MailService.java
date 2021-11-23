@@ -1,4 +1,4 @@
-package com.hope.web.mail;
+package com.hope.web.service;
 
 import org.springframework.stereotype.Service;
 

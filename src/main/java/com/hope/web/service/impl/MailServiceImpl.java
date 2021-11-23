@@ -1,6 +1,6 @@
-package com.hope.web.mail.impl;
+package com.hope.web.service.impl;
 
-import com.hope.web.mail.MailService;
+import com.hope.web.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

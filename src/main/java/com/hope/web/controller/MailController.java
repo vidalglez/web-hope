@@ -1,7 +1,7 @@
 package com.hope.web.controller;
 
 import com.hope.web.dto.EmailDataDTO;
-import com.hope.web.mail.MailService;
+import com.hope.web.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
