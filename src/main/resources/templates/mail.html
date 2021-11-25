@@ -1,332 +1,150 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template html</title>
-</head>
+    <title>Template</title>
 
-<body>
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #ffff;
+        }
 
-<style>
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            width: 50%;
-            background: #f3d5d5;
-            border-radius: 5px;
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
         }
 
         img {
-            width: 80%;
+            border-radius: 6px;
         }
 
-        .box_saludo {
-            /* border: 2px solid black; */
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: left;
-            align-items: center;
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            padding-bottom: 60px;
+        }
+
+        .main {
+            background-color: #ffff;
             margin: 0 auto;
-            width: 50%;
+            width: 100%;
+            max-width: 600px;
+            border-spacing: 0;
+            font-family: sans-serif;
+            color: rgb(75, 74, 74);
         }
 
-        h2 {
-            font-size: 1.8rem;
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 5px;
-        }
-
-        .box_message {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: start;
-            align-items: center;
-            margin: 0 auto;
-            width: 50%;
-        }
-
-        .message {
-            font-size: 1rem;
-            font-weight: normal;
-            font-family: Arial, Helvetica, sans-serif;
-            text-align: justify;
-            padding: 5px;
-        }
-
-        .box_contact {
-            background-color: #e0e0e07c;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: left;
-            margin: 0 auto;
-            width: 50%;
-            padding-top: 2%;
-            padding-bottom: 2%;
-            border-radius: 5px;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-top: 25px
-        }
-
-        .contact {
-            padding-left: 18px;
+        .saludo {
             font-size: 1.2rem;
-            display: flex;
-            flex-wrap: wrap;
+            font-weight: bold;
         }
 
-        .redes {
-            display: inline-block;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 10px;
+        .saludo_01 {
+             margin-top: 5px;
+        }
+
+        .mensaje {
+        }
+
+        .two-columns {
+            background-color:#e0e0e07c;
+            border-radius: 6px;
+        }
+
+        .two-columns {
             text-align: center;
-        }
-
-        td img {
-            width: 5%;
-            padding-right: 70px;
-        }
-
-        #face {
-            width: 3%;
-        }
-
-        .web {
-            font-size: 1.2rem;
-            padding-left: 18px;
-            text-align: start;
-            padding-top: 20px;
-
-        }
-
-        a .celda_pagina {
-            font-size: 1.2rem;
-            font-style: none;
-
-        }
-
-        th {}
-
-        td {
-            padding: 15px;
-            padding-left: 20px;
             align-items: center;
-
         }
 
-        /* RESPONSIVE --------------------------------------------- */
-
-
-        @media only screen and (max-width: 596px) {
-
-            .container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                margin: 0 auto;
-                width: 80%;
-                background: #f3d5d5;
-                border-radius: 5px;
-                margin-top: 20px
-            }
-
-            img {
-                width: 100%;
-            }
-
-            .box_saludo {
-                width: 80%;
-            }
-
-            h2 {
-                font-size: 1rem;
-            }
-
-            .box_message {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                margin: 0 auto;
-                width: 80%;
-            }
-
-            .message {
-                font-size: 0.8rem;
-                padding: 5px;
-                text-align: justify;
-            }
-
-            .box_contact {
-                background-color: #e0e0e07c;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: left;
-                margin: 0 auto;
-                width: 80%;
-                padding-top: 2%;
-                padding-bottom: 2%;
-                padding-bottom: 25px;
-                border-radius: 5px;
-                font-family: Arial, Helvetica, sans-serif;
-                margin-top: 25px;
-            }
-
-            .contact {
-                padding-left: 18px;
-                padding-top: 10px;
-
-                font-size: 0.8rem;
-                font-weight: normal;
-            }
-
-
-            .web {
-                font-size: 1rem;
-                padding-left: 18px;
-                font-weight: normal;
-                padding-top: 20px;
-            }
-
-            .redes {
-                display: inline-block;
-                justify-content: center;
-                align-items: center;
-                font-size: 10px;
-            }
-
-            td img {
-                width: 9%;
-                padding-right: 28px;
-            }
-
-            #face {
-                width: 5%;
-            }
-
-            td {
-                padding: 5px;
-                padding-left: 15px;
-                text-align: center;
-                font-size: 12px;
-
-            }
-        }
-
-
-        @media only screen and (max-width: 850px) {
-            .container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                margin: 0 auto;
-                width: 80%;
-                background: #f3d5d5;
-                border-radius: 5px;
-                margin-top: 60px
-            }
-
-            .box_saludo {
-                width: 80%;
-            }
-
-            .box_message {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: start;
-                align-items: center;
-                margin: 0 auto;
-                width: 80%;
-            }
-
-            .box_contact {
-                background-color: #e0e0e07c;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: left;
-                margin: 0 auto;
-                width: 80%;
-                padding-top: 2%;
-                padding-bottom: 2%;
-                padding-bottom: 25px;
-                border-radius: 5px;
-                font-family: Arial, Helvetica, sans-serif;
-                margin-top: 25px;
-
-            }
-
-            .contact {
-                padding-left: 18px;
-                padding-top: 10px;
-
-                font-size: 1rem;
-                font-weight: normal;
-            }
-
-            .web {
-                font-size: 1rem;
-                padding-left: 18px;
-                font-weight: normal;
-                padding-top: 20px;
-            }
-
-            td {
-                font-size: 18px;
-            }
+        .two-columns .column {
+           width: 100%;
+           max-width: 560px;
+           display: inline-block;
+           vertical-align: top;
         }
     </style>
-<table class="container">
-    <tr>
-        <th class="animation">
-            <img src="cid:villaimg" alt="animation">
-            <!--  <img src="cid:villaimg" alt="logo Villa"> -->
-        </th>
-    </tr>
-    <table class="box_saludo">
-        <tr>
-            <th class="saludo">
-                <h2>Hola, Julia</h2>
-            </th>
-        </tr>
-    </table>
-    <table class="box_message">
-        <tr>
-            <th class="message">
-                <p>Gracias por ponerte en contacto con nosotros, ser&aacute; un placer atenderte.</p>
-                <p th:text="${message}">Este es el mensaje</p>
-            </th>
-        </tr>
-    </table>
-    <table class="box_contact">
-        <tr>
-            <th class="contact"> Contactanos:</th>
-        </tr>
-        <tr class="redes">
-            <td>
-                <a href="https://www.twitter.com"><img src="cid:twitter" alt="twitter"></a>
-                <a href="https://www.facebook.com"><img id="face" src="cid:facebook" alt="facebook"></a>
-                <a href="https://www.instagram.com"><img src="cid:instagram" alt="instagram"></a>
-            </td>
-        </tr>
-        <tr>
-            <th class="web">Website:</th>
-        </tr>
-        <tr>
-            <td class="celda_pagina">
-                <a href="webSiteLink" th:href="@{${webSiteLink}}">www.villamiasalon.com</a>
+
+</head>
+<body>
+<center class="wrapper">
+
+    <table class="main" width="100%">
+
+        <!-- BANNER GIF -->
+
+        <tr class="banner">
+            <td class="gif" height="200px" style="background-color: #ffff;">
+                <img  src="cid:villaimg" alt="gif"  width="600" style="max-width:100%">
+
             </td>
         </tr>
 
+        <!-- SALUDO CON NOMBRE DEL CLIENTE -->
+
+        <tr>
+            <td class="saludo" height="50px" style="padding: 12px;">
+                <p>Hola <span th:text="${subject}">El subject</span></p>
+            </td>
+        </tr>
+
+        <!-- MENSAJE SE BIENVENIDA -->
+
+        <tr>
+            <td class="saludo_01" height="50px" style="padding: 5px 20px;">
+                <p>Es un gusto antenderte, gracias por ponerte en contacto con nosotros</p>
+            </td>
+        </tr>
+
+        <!-- MENSAJE DEL CLIENTE -->
+
+        <tr>
+            <td class="mensaje" height="120px" style="padding:2px 25px;">
+                <p th:text="${message}">Mensaje del cliente</p>
+            </td>
+        </tr>
+
+        <!-- BLOQUE CON CONTACTO Y REDES SOCIALES -->
+
+        <tr>
+            <td style="padding: 10px 0;">
+                <table width="100%">
+                    <tr>
+                        <td class="two-columns">
+
+                            <table class="column">
+                                <tr>
+                                    <td>
+                                        <p>Contactanos:</p>
+                                        <a href="https://www.twitter.com"><img src="cid:twitter" width="40px" alt="twitter icon"></a>
+                                        <a href="https://www.facebook.com"><img src="cid:facebook" width="40px" alt="facebook icon"></a>
+                                        <a href="https://www.instagram.com"><img src="cid:instagram" width="40px" alt="instagram icon"></a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table class="column">
+                                <tr>
+                                    <td style="padding: 30px 50px">
+                                        <p>Website:</p>
+                                        <a href="https://villamia.herokuapp.com/home.html#logo-baner">www.villamiasalon.com</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
     </table>
-</table>
+</center>
 </body>
-
 </html>

@@ -40,9 +40,11 @@ public class MailServiceImpl implements MailService {
         ctx.setVariable("subject", subject);
         ctx.setVariable("message", message);
         ctx.setVariable("villaimg", "villaimg");
+
         ctx.setVariable("twitter", "twitter");
         ctx.setVariable("facebook", "facebook");
         ctx.setVariable("instagram", "instagram");
+
         ctx.setVariable("webSiteLink", webSiteLink);
 
         String emailContent = thymeleaf.process("mail.html", ctx);
@@ -55,9 +57,9 @@ public class MailServiceImpl implements MailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(emailContent, true);
 
-        mimeMessageHelper.addInline("twitter", new ClassPathResource("static/img/twitter.svg"), "image/svg+xml");
-        mimeMessageHelper.addInline("facebook", new ClassPathResource("static/img/facebook.svg"), "image/svg+xml");
-        mimeMessageHelper.addInline("instagram", new ClassPathResource("static/img/instagram.svg"), "image/svg+xml");
+        mimeMessageHelper.addInline("twitter", new ClassPathResource("static/img/twitter.png"), "image/png");
+        mimeMessageHelper.addInline("facebook", new ClassPathResource("static/img/facebook.png"), "image/png");
+        mimeMessageHelper.addInline("instagram", new ClassPathResource("static/img/instagram.png"), "image/png");
         mimeMessageHelper.addInline("villaimg", new ClassPathResource("static/img/logo_villa.gif"), "image/gif");
 
         mailSender.send(mimeMessage);
