@@ -57,9 +57,9 @@ public class MailServiceImpl implements MailService {
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(emailContent, true);
 
-        mimeMessageHelper.addInline("twitter", new ClassPathResource("static/img/twitter.png"), "image/png");
-        mimeMessageHelper.addInline("facebook", new ClassPathResource("static/img/facebook.png"), "image/png");
-        mimeMessageHelper.addInline("instagram", new ClassPathResource("static/img/instagram.png"), "image/png");
+        mimeMessageHelper.addInline("twitter", new ClassPathResource("static/img/twitter-square.png"), "image/png");
+        mimeMessageHelper.addInline("facebook", new ClassPathResource("static/img/facebook-square.png"), "image/png");
+        mimeMessageHelper.addInline("instagram", new ClassPathResource("static/img/instagram-square.png"), "image/png");
         mimeMessageHelper.addInline("villaimg", new ClassPathResource("static/img/logo_villa.gif"), "image/gif");
 
         mailSender.send(mimeMessage);
