@@ -13,6 +13,6 @@ public class MailErrorDTO {
 
     private int status;
     private List<String> errors;
-    private long timeStamp;
+    private long timestamp;
 
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.mail.internet.AddressException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,19 +25,8 @@ public class MailExceptionHandler {
         errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorResponse.setErrors(Arrays.asList("El email no pudo ser enviado, por favor intentelo mas tarde"));
 
-        errorResponse.setTimeStamp(System.currentTimeMillis());
+        errorResponse.setTimestamp(System.currentTimeMillis());
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<MailErrorDTO> handleAddressException(AddressException ex) {
-        log.info(String.format("%s - %s", "handleAddressException", ex.getMessage()));
-
-        MailErrorDTO errorResponse = new MailErrorDTO();
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorResponse.setErrors(Arrays.asList("La direccion de correo electronico debe ser valida"));
-        errorResponse.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<MailErrorDTO>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
@@ -49,7 +37,7 @@ public class MailExceptionHandler {
         MailErrorDTO errorResponse = new MailErrorDTO();
         errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
         errorResponse.setErrors(errors);
-        errorResponse.setTimeStamp(System.currentTimeMillis());
+        errorResponse.setTimestamp(System.currentTimeMillis());
         return new ResponseEntity<MailErrorDTO>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
