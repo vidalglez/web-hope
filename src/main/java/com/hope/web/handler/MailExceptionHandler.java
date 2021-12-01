@@ -19,7 +19,7 @@ public class MailExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<MailErrorDTO> handleMailDataException(MailSendException ex) {
-        log.info(String.format("%s - %s", "handleMailDataException", ex.getMessage()));
+        log.error(String.format("%s - %s", "handleMailDataException", ex.getMessage()));
 
         MailErrorDTO errorResponse = new MailErrorDTO();
         errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -31,7 +31,7 @@ public class MailExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<MailErrorDTO> handleMethodArgumentInvalid(MethodArgumentNotValidException ex) {
-        log.info(String.format("%s - %s", "handleMethodArgumentInvalid", ex.getMessage()));
+        log.error(String.format("%s - %s", "handleMethodArgumentInvalid", ex.getMessage()));
 
         List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(message -> String.format("%s %s", message.getField(), message.getDefaultMessage())).collect(Collectors.toList());
         MailErrorDTO errorResponse = new MailErrorDTO();
