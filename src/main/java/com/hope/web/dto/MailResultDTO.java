@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MailErrorDTO {
+public class MailResultDTO {
 
     private int status;
     private List<String> errors;

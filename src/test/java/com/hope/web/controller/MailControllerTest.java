@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mail.MailSendException;
 import org.springframework.test.web.servlet.MockMvc;
@@ -48,7 +49,9 @@ class MailControllerTest {
                             .contentType(MediaType.APPLICATION_JSON_VALUE)
                             .content(asJsonString(mockDTO)))
                     .andExpect(status().isAccepted())
-                    .andExpect(jsonPath("$.result", is("Mail has been sent successfully!!!")));
+                    .andExpect(jsonPath("$.status", is(HttpStatus.OK.value())))
+                    .andExpect(jsonPath("$.errors.length()", is(0)))
+                    .andExpect(jsonPath("$.timestamp").exists());
         } catch (Exception e) {
             e.printStackTrace();
         }
